@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DCEBFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5F7FA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="240" fill="url(#bgGradient)"/>
+  
+  <!-- Passing Dot symbol centered and scaled -->
+  <g transform="translate(512, 512) scale(20)">
+    <!-- Left node -->
+    <circle cx="-6" cy="0" r="3" fill="#3A8BFF" opacity="0.8"/>
+    
+    <!-- Right node -->
+    <circle cx="6" cy="0" r="3" fill="#3A8BFF" opacity="0.8"/>
+    
+    <!-- Passing dot -->
+    <circle cx="0" cy="-4" r="2" fill="#3A8BFF"/>
+    
+    <!-- Subtle connecting arc -->
+    <path d="M -3 0 Q 0 -4 3 0" stroke="#3A8BFF" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.2"/>
+  </g>
+</svg>

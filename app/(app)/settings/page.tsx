@@ -1,78 +1,136 @@
 'use client'
 
-import { useState } from 'react'
+import { ScreenHeader } from '@/components/layout/ScreenHeader'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
-import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function SettingsPage() {
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
-
-  const handleSignOut = async () => {
-    setLoading(true)
-    const supabase = createClient()
-    await supabase.auth.signOut()
-    router.push('/signin')
-  }
-
   return (
-    <div className="p-4 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-[#1A1C1E] mb-2">
-          Settings
-        </h1>
-        <p className="text-[#6A7280]">
-          Manage your account and business
-        </p>
-      </div>
+    <div className="space-y-6 pb-6">
+      <ScreenHeader title="Settings" />
 
-      {/* Business Settings */}
-      <Card>
-        <h2 className="text-lg font-semibold text-[#1A1C1E] mb-4">
-          Business Information
-        </h2>
-        <div className="space-y-4">
-          <Input label="Business Name" type="text" placeholder="Your business name" />
-          <Input label="Category" type="text" placeholder="e.g., Restaurant, Retail" />
-          <Input label="Domain" type="text" placeholder="yourbusiness.com" />
-          <Button variant="secondary" className="w-full">
-            Save Changes
-          </Button>
+      {/* Business */}
+      <Card padding="md">
+        <h3 className="text-body-lg font-semibold text-slate-900 mb-4">
+          Business
+        </h3>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
+            <div>
+              <p className="text-body-sm font-medium text-slate-800">
+                Business name
+              </p>
+              <p className="text-caption text-slate-500">Your Business</p>
+            </div>
+            <Button variant="ghost" size="small">
+              Edit
+            </Button>
+          </div>
+          <div className="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
+            <div>
+              <p className="text-body-sm font-medium text-slate-800">
+                Category
+              </p>
+              <p className="text-caption text-slate-500">Wellness</p>
+            </div>
+            <Button variant="ghost" size="small">
+              Edit
+            </Button>
+          </div>
+          <div className="flex items-center justify-between py-2">
+            <div>
+              <p className="text-body-sm font-medium text-slate-800">Domain</p>
+              <p className="text-caption text-slate-500">yourbusiness.com</p>
+            </div>
+            <Button variant="ghost" size="small">
+              Edit
+            </Button>
+          </div>
         </div>
       </Card>
 
-      {/* Account Settings */}
-      <Card>
-        <h2 className="text-lg font-semibold text-[#1A1C1E] mb-4">
+      {/* Team */}
+      <Card padding="md">
+        <h3 className="text-body-lg font-semibold text-slate-900 mb-4">
+          Team
+        </h3>
+        <div className="space-y-3">
+          <Button variant="secondary" fullWidth>
+            Invite a collaborator
+          </Button>
+          <p className="text-caption text-slate-500">
+            Manage team (coming soon)
+          </p>
+        </div>
+      </Card>
+
+      {/* Account */}
+      <Card padding="md">
+        <h3 className="text-body-lg font-semibold text-slate-900 mb-4">
           Account
-        </h2>
-        <div className="space-y-4">
-          <Input label="Email" type="email" placeholder="your@email.com" />
-          <Input label="Password" type="password" placeholder="••••••••" />
-          <Button variant="secondary" className="w-full">
-            Update Account
+        </h3>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between py-2 border-b border-slate-100">
+            <div>
+              <p className="text-body-sm font-medium text-slate-800">Email</p>
+              <p className="text-caption text-slate-500">you@example.com</p>
+            </div>
+            <Button variant="ghost" size="small">
+              Edit
+            </Button>
+          </div>
+          <Button variant="secondary" fullWidth>
+            Change password
           </Button>
         </div>
       </Card>
 
-      {/* Danger Zone */}
-      <Card>
-        <h2 className="text-lg font-semibold text-[#1A1C1E] mb-4">
-          Danger Zone
-        </h2>
-        <Button
-          variant="ghost"
-          className="w-full text-red-600 hover:text-red-700 hover:bg-red-50"
-          onClick={handleSignOut}
-          disabled={loading}
-        >
-          {loading ? 'Signing out...' : 'Sign out'}
-        </Button>
+      {/* Billing */}
+      <Card padding="md">
+        <h3 className="text-body-lg font-semibold text-slate-900 mb-4">
+          Billing
+        </h3>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between py-2">
+            <div>
+              <p className="text-body-sm font-medium text-slate-800">Plan</p>
+              <p className="text-caption text-slate-500">Free</p>
+            </div>
+            <Button variant="ghost" size="small">
+              Manage
+            </Button>
+          </div>
+        </div>
       </Card>
+
+      {/* About */}
+      <Card padding="md">
+        <h3 className="text-body-lg font-semibold text-slate-900 mb-4">
+          About
+        </h3>
+        <div className="space-y-2">
+          <Link
+            href="/about/wis"
+            className="block text-body-sm text-reciprocity hover:underline"
+          >
+            What is Warm Intro Strength?
+          </Link>
+          <Link
+            href="/about/trust-principles"
+            className="block text-body-sm text-reciprocity hover:underline"
+          >
+            Read the trust principles
+          </Link>
+        </div>
+      </Card>
+
+      {/* Sign out */}
+      <div className="pt-4">
+        <Button variant="destructive" fullWidth>
+          Sign out
+        </Button>
+      </div>
     </div>
   )
 }
-

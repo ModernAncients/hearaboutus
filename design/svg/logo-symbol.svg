@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Left node -->
+  <circle cx="6" cy="12" r="3" fill="currentColor" opacity="0.8"/>
+  
+  <!-- Right node -->
+  <circle cx="18" cy="12" r="3" fill="currentColor" opacity="0.8"/>
+  
+  <!-- Passing dot (moving between nodes) -->
+  <circle cx="12" cy="8" r="2" fill="currentColor"/>
+  
+  <!-- Subtle connecting arc (optional, very light) -->
+  <path d="M 9 12 Q 12 8 15 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.2"/>
+</svg>

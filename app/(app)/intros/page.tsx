@@ -1,89 +1,86 @@
-import { Card } from '@/components/ui/Card'
-import { createClient } from '@/lib/supabase/server'
-import { getBusinessByUserId } from '@/lib/db/businesses'
-import { getWarmIntrosByBusinessId } from '@/lib/db/warm-intros'
+'use client'
 
-export default async function IntrosPage() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+import { useState } from 'react'
+import { ScreenHeader } from '@/components/layout/ScreenHeader'
+import { StatTile } from '@/components/ui/StatTile'
+import { SegmentedControl } from '@/components/ui/SegmentedControl'
+import { IntroList } from '@/components/domain/IntroList'
 
-  if (!user) {
-    return null
-  }
+// Mock data
+const mockIntros = [
+  {
+    advocateName: 'Anna',
+    recipientHint: 'Friend',
+    channel: 'sms' as const,
+    status: 'converted' as const,
+    createdAt: '2 days ago',
+  },
+  {
+    advocateName: 'Sarah',
+    recipientHint: 'Colleague',
+    channel: 'email' as const,
+    status: 'clicked' as const,
+    createdAt: '3 days ago',
+  },
+  {
+    advocateName: 'Mike',
+    channel: 'link' as const,
+    status: 'shared' as const,
+    createdAt: '5 days ago',
+  },
+]
 
-  const business = await getBusinessByUserId(user.id)
-  
-  if (!business) {
-    return (
-      <div className="p-4">
-        <Card>
-          <div className="text-center py-8 text-[#6A7280]">
-            <p>Please set up your business first</p>
-          </div>
-        </Card>
-      </div>
-    )
-  }
+const filterOptions = [
+  { value: 'all', label: 'All' },
+  { value: 'shared', label: 'Shared' },
+  { value: 'clicked', label: 'Opened' },
+  { value: 'converted', label: 'Converted' },
+]
 
-  const intros = await getWarmIntrosByBusinessId(business.id)
+export default function IntrosPage() {
+  const [filter, setFilter] = useState('all')
+
+  const filteredIntros =
+    filter === 'all'
+      ? mockIntros
+      : mockIntros.filter((intro) => intro.status === filter)
 
   return (
-    <div className="p-4 space-y-4">
-      <div>
-        <h1 className="text-2xl font-bold text-[#1A1C1E] mb-2">
-          Warm Intros
-        </h1>
-        <p className="text-[#6A7280]">
-          Track every warm introduction in your network
-        </p>
+    <div className="space-y-6 pb-6">
+      <ScreenHeader
+        title="Warm intros"
+        subtitle="Every time someone puts in a good word."
+      />
+
+      {/* Funnel Summary */}
+      <div className="grid grid-cols-4 gap-2">
+        <StatTile label="Started" value={mockIntros.length} />
+        <StatTile
+          label="Shared"
+          value={mockIntros.filter((i) => i.status === 'shared').length}
+        />
+        <StatTile
+          label="Opened"
+          value={mockIntros.filter((i) => i.status === 'clicked').length}
+        />
+        <StatTile
+          label="Converted"
+          value={mockIntros.filter((i) => i.status === 'converted').length}
+        />
       </div>
 
-      {intros.length === 0 ? (
-        <Card>
-          <div className="text-center py-12">
-            <div className="text-4xl mb-4">🤝</div>
-            <p className="text-[#6A7280] mb-2">No warm intros yet</p>
-            <p className="text-sm text-[#6A7280]">
-              When customers share your Marker, they'll appear here
-            </p>
-          </div>
-        </Card>
-      ) : (
-        <div className="space-y-3">
-          {intros.map((intro) => (
-            <Card key={intro.id}>
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="font-semibold text-[#1A1C1E] mb-1">
-                    {intro.friend_email || intro.friend_phone || 'Anonymous'}
-                  </div>
-                  <div className="text-sm text-[#6A7280] mb-2">
-                    Shared via {intro.channel || 'unknown'}
-                  </div>
-                  <div className="text-xs text-[#6A7280]">
-                    {new Date(intro.created_at).toLocaleDateString()}
-                  </div>
-                </div>
-                <span
-                  className={`px-2 py-1 rounded text-xs font-medium ${
-                    intro.status === 'converted'
-                      ? 'bg-green-100 text-green-700'
-                      : intro.status === 'clicked'
-                      ? 'bg-blue-100 text-blue-700'
-                      : intro.status === 'shared'
-                      ? 'bg-yellow-100 text-yellow-700'
-                      : 'bg-gray-100 text-gray-700'
-                  }`}
-                >
-                  {intro.status}
-                </span>
-              </div>
-            </Card>
-          ))}
-        </div>
-      )}
+      {/* Filter */}
+      <SegmentedControl
+        options={filterOptions}
+        value={filter}
+        onChange={setFilter}
+      />
+
+      {/* Intro List */}
+      <IntroList
+        intros={filteredIntros}
+        emptyMessage="No intros yet. When a customer shares your Marker, you'll see the trail here."
+      />
     </div>
   )
 }

@@ -1,19 +1,42 @@
-import { ReactNode } from 'react'
+import React from 'react'
+import { Card } from './Card'
 
-interface StatTileProps {
+export interface StatTileProps {
   label: string
   value: string | number
-  icon?: ReactNode
-  className?: string
+  delta?: string
+  hint?: string
+  variant?: 'default' | 'highlight'
 }
 
-export function StatTile({ label, value, icon, className = '' }: StatTileProps) {
+export function StatTile({
+  label,
+  value,
+  delta,
+  hint,
+  variant = 'default',
+}: StatTileProps) {
+  const isHighlight = variant === 'highlight'
   return (
-    <div className={`bg-white rounded-lg p-4 shadow-soft ${className}`}>
-      {icon && <div className="mb-2">{icon}</div>}
-      <div className="text-2xl font-bold text-[#1A1C1E] mb-1">{value}</div>
-      <div className="text-sm text-[#6A7280]">{label}</div>
-    </div>
+    <Card
+      padding="md"
+      className={
+        isHighlight
+          ? 'bg-reciprocity-light border border-reciprocity-light'
+          : 'bg-white'
+      }
+    >
+      <p className="text-xs font-medium text-slate-500">
+        {label}
+      </p>
+      <p className="mt-1 text-xl font-semibold text-slate-900">
+        {value}
+      </p>
+      <div className="mt-1 flex items-center justify-between text-[11px] text-slate-500">
+        {delta && <span>{delta}</span>}
+        {hint && <span>{hint}</span>}
+      </div>
+    </Card>
   )
 }
 

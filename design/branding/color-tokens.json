@@ -1,0 +1,131 @@
+{
+  "color": {
+    "brand": {
+      "reciprocity": {
+        "value": "#3A8BFF",
+        "type": "color",
+        "description": "Primary brand color - reciprocity blue"
+      },
+      "reciprocityDark": {
+        "value": "#246CDB",
+        "type": "color",
+        "description": "Dark variant for hover states"
+      },
+      "reciprocityLight": {
+        "value": "#DCEBFF",
+        "type": "color",
+        "description": "Light variant for backgrounds"
+      },
+      "gold": {
+        "value": "#E5B76A",
+        "type": "color",
+        "description": "Secondary brand color - gold warmth"
+      },
+      "goldDark": {
+        "value": "#C79A50",
+        "type": "color",
+        "description": "Dark variant"
+      },
+      "goldLight": {
+        "value": "#F8E6C7",
+        "type": "color",
+        "description": "Light variant"
+      }
+    },
+    "neutral": {
+      "900": {
+        "value": "#1A1C1E",
+        "type": "color",
+        "description": "Midnight - primary text"
+      },
+      "800": {
+        "value": "#2A2F35",
+        "type": "color"
+      },
+      "700": {
+        "value": "#2F3742",
+        "type": "color"
+      },
+      "600": {
+        "value": "#4A535E",
+        "type": "color"
+      },
+      "500": {
+        "value": "#6A7280",
+        "type": "color",
+        "description": "Muted text, placeholders"
+      },
+      "400": {
+        "value": "#8F96A0",
+        "type": "color"
+      },
+      "300": {
+        "value": "#C6CBD4",
+        "type": "color",
+        "description": "Borders, dividers"
+      },
+      "200": {
+        "value": "#E1E4E8",
+        "type": "color"
+      },
+      "100": {
+        "value": "#F0F2F5",
+        "type": "color"
+      },
+      "50": {
+        "value": "#F8F9FB",
+        "type": "color"
+      }
+    },
+    "background": {
+      "cloud": {
+        "value": "#F5F7FA",
+        "type": "color",
+        "description": "Primary background"
+      },
+      "midnight": {
+        "value": "#1A1C1E",
+        "type": "color",
+        "description": "Dark mode background"
+      }
+    },
+    "status": {
+      "positive": {
+        "value": "#3BB273",
+        "type": "color",
+        "description": "Success states"
+      },
+      "positiveLight": {
+        "value": "#DFF6E8",
+        "type": "color"
+      },
+      "warning": {
+        "value": "#FFA94D",
+        "type": "color",
+        "description": "Warning states"
+      },
+      "warningLight": {
+        "value": "#FFF4E6",
+        "type": "color"
+      },
+      "danger": {
+        "value": "#FF5C5C",
+        "type": "color",
+        "description": "Error, destructive actions"
+      },
+      "dangerLight": {
+        "value": "#FFECEC",
+        "type": "color"
+      },
+      "info": {
+        "value": "#3A8BFF",
+        "type": "color",
+        "description": "Informational messages"
+      },
+      "infoLight": {
+        "value": "#EAF2FF",
+        "type": "color"
+      }
+    }
+  }
+}
