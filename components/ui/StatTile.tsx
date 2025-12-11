@@ -20,10 +20,14 @@ export function StatTile({
   return (
     <Card
       padding="md"
-      className={
+      className={isHighlight ? 'bg-white' : 'bg-white'}
+      style={
         isHighlight
-          ? 'bg-reciprocity-light border border-reciprocity-light'
-          : 'bg-white'
+          ? {
+              backgroundColor: '#DCEBFF',
+              border: '1px solid #DCEBFF',
+            }
+          : undefined
       }
     >
       <p className="text-xs font-medium text-slate-500">

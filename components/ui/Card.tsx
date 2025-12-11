@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 
 export interface CardProps {
   children: React.ReactNode
@@ -7,6 +7,7 @@ export interface CardProps {
   as?: 'div' | 'button'
   onClick?: () => void
   className?: string
+  style?: CSSProperties
 }
 
 export function Card({
@@ -16,6 +17,7 @@ export function Card({
   as: Component = 'div',
   onClick,
   className = '',
+  style,
 }: CardProps) {
   const paddingClass =
     padding === 'sm'
@@ -28,13 +30,17 @@ export function Card({
     <Component
       onClick={onClick}
       className={[
-        'rounded-lg bg-white shadow-card',
+        'rounded-lg bg-white',
         paddingClass,
-        interactive && 'transition hover:shadow-pop active:scale-[0.99]',
+        interactive && 'transition hover:shadow-lg active:scale-[0.99] cursor-pointer',
         className,
       ]
         .filter(Boolean)
         .join(' ')}
+      style={{
+        boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+        ...style,
+      }}
     >
       {children}
     </Component>
