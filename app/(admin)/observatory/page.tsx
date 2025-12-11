@@ -25,22 +25,18 @@ export default function ObservatoryPage() {
           <StatTile
             label="Trust Events"
             value={totalTrustEvents}
-            icon={<span className="text-2xl">📊</span>}
           />
           <StatTile
             label="Businesses"
             value={totalBusinesses}
-            icon={<span className="text-2xl">🏢</span>}
           />
           <StatTile
             label="Content Items"
             value={totalContentItems}
-            icon={<span className="text-2xl">📝</span>}
           />
           <StatTile
             label="Agent Logs"
             value={totalAgentLogs}
-            icon={<span className="text-2xl">🤖</span>}
           />
         </div>
 

@@ -45,7 +45,7 @@ export function TrustEventItem({
         {icon}
       </div>
       <div className="flex-1">
-        <p className="text-sm text-slate-800">
+        <p className="text-body-sm text-slate-800">
           {description}
         </p>
         <div className="mt-1 flex items-center gap-2 text-[11px] text-slate-500">

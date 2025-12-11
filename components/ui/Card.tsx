@@ -30,17 +30,14 @@ export function Card({
     <Component
       onClick={onClick}
       className={[
-        'rounded-lg bg-white',
+        'rounded-lg bg-white shadow-card',
         paddingClass,
-        interactive && 'transition hover:shadow-lg active:scale-[0.99] cursor-pointer',
+        interactive && 'transition hover:shadow-pop active:scale-[0.99] cursor-pointer',
         className,
       ]
         .filter(Boolean)
         .join(' ')}
-      style={{
-        boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-        ...style,
-      }}
+      style={style}
     >
       {children}
     </Component>

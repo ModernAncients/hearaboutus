@@ -22,7 +22,7 @@ const mockEvents = [
   },
   {
     type: 'intro_converted' as const,
-    description: 'New customer from Anna's referral',
+    description: "New customer from Anna's referral",
     timestamp: '1d ago',
     statusLabel: 'Converted',
     statusVariant: 'positive' as const,
