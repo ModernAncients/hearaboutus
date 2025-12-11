@@ -46,7 +46,7 @@ export function ShareSheet({
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose} title={title}>
       <div className="flex flex-col gap-3">
-        {navigator.share && (
+        {typeof navigator !== 'undefined' && 'share' in navigator && (
           <Button
             variant="primary"
             fullWidth
